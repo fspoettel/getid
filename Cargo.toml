@@ -1,8 +1,20 @@
 [package]
-name = "ida"
+name = "getid"
 version = "0.1.0"
+authors = ["Felix Spoettel <felix@spoet.tel>"]
 edition = "2021"
+license = "MIT"
+readme = "README.md"
+description = "A tool to generate a random { cuid, nanoid, uuidv4 }."
+homepage = "https://github.com/fspoettel/getid"
+repository = "https://github.com/fspoettel/getid"
+keywords = ["cli", "uuid", "cuid", "nanoid"]
+categories = ["command-line-utilities"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+cuid = "1.2.0"
+nanoid = "0.4.0"
+pico-args = { version = "0.4.2", features = ["eq-separator"] }
+uuid = { version = "0.8", features = ["v4"] }
