@@ -2,6 +2,7 @@ fn main() {
     match getid::parse_args() {
         Err(err) => {
             eprintln!("Error: {}", err);
+            std::process::exit(1);
         }
 
         Ok(args) => match args {
