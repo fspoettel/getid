@@ -1,105 +1,27 @@
-use nanoid::nanoid;
-use uuid::Uuid;
-
-enum AppArgs {
-    Cuid {
-        help: bool,
-        slug: bool,
-    },
-    Nanoid {
-        help: bool,
-        length: Option<usize>,
-    },
-    Uuidv4 {
-        help: bool,
-        urn: bool,
-    },
-    #[allow(dead_code)]
-    Global {
-        help: bool,
-        version: bool,
-    },
-}
-
 fn main() {
-    match parse_args() {
+    match getid::parse_args() {
         Err(err) => {
             eprintln!("Error: {}", err);
         }
 
         Ok(args) => match args {
-            AppArgs::Cuid { help, slug } => {
-                if help {
-                    println!("{}", HELP_CUID);
-                } else {
-                    let id = if slug { cuid::slug() } else { cuid::cuid() };
-                    println!("{}", id.expect("could not acquire cuid:"));
-                }
+            getid::AppArgs::Cuid { show_help, slug } => {
+                getid::output_or_help(show_help, getid::get_cuid(slug), HELP_CUID);
             }
-
-            AppArgs::Nanoid { help, length } => {
-                if help {
-                    println!("{}", HELP_NANOID);
-                } else {
-                    let id = match length {
-                        Some(len) => nanoid!(len),
-                        None => nanoid!(),
-                    };
-                    println!("{}", id);
-                }
+            getid::AppArgs::Uuidv4 { show_help, urn } => {
+                getid::output_or_help(show_help, getid::get_uuid(urn), HELP_UUIDV4);
             }
-
-            AppArgs::Uuidv4 { help, urn } => {
-                if help {
-                    println!("{}", HELP_UUIDV4);
-                } else {
-                    let uuid = Uuid::new_v4();
-                    let formatted = if urn {
-                        uuid.to_urn().to_string()
-                    } else {
-                        uuid.to_hyphenated().to_string()
-                    };
-                    println!("{}", formatted);
-                }
+            getid::AppArgs::Nanoid { show_help, length } => {
+                getid::output_or_help(show_help, getid::get_nanoid(length), HELP_NANOID);
             }
-
-            AppArgs::Global { help: _, version } => {
-                if version {
-                    println!("{}", env!("CARGO_PKG_VERSION"));
-                } else {
-                    // print a default format if not `--help`?
-                    println!("{}", HELP);
-                }
+            getid::AppArgs::Global {
+                show_help: _,
+                version,
+            } => {
+                // print a default format if not `--help`?
+                getid::output_or_help(!version, env!("CARGO_PKG_VERSION").to_string(), HELP);
             }
         },
-    }
-}
-
-fn parse_args() -> Result<AppArgs, Box<dyn std::error::Error>> {
-    let mut args = pico_args::Arguments::from_env();
-
-    match args.subcommand()?.as_deref() {
-        Some("cuid") => Ok(AppArgs::Cuid {
-            help: args.contains(["-h", "--help"]),
-            slug: args.contains("--slug"),
-        }),
-        Some("nanoid") | Some("nano") => Ok(AppArgs::Nanoid {
-            help: args.contains(["-h", "--help"]),
-            length: args.opt_value_from_str("--length")?,
-        }),
-        Some("uuidv4") | Some("uuid") => Ok(AppArgs::Uuidv4 {
-            help: args.contains(["-h", "--help"]),
-            urn: args.contains("--urn"),
-        }),
-        Some(s) => Err(format!(
-            "unknown subcommand: {}. Type `getid --help` to see available commands.",
-            s
-        )
-        .into()),
-        None => Ok(AppArgs::Global {
-            help: args.contains(["-h", "--help"]),
-            version: args.contains(["-v", "--version"]),
-        }),
     }
 }
 
@@ -134,7 +56,7 @@ Usage:
 Options:
   --slug      Generate a smaller id (7-10 characters) intended for short urls.
   -h, --help  Show this help again.
-  
+
 For more information on the 'cuid' format, see: https://github.com/ericelliott/cuid.
 ";
 
@@ -147,7 +69,7 @@ Usage:
 Options:
   --length <len>  Length of generated id. [default: 21]
   -h, --help      Show this help again.
-  
+
 For more information on the 'nanoid' format, see: https://zelark.github.io/nano-id-cc/.
 ";
 
