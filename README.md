@@ -28,6 +28,7 @@ Usage:
 
 Commands:
   cuid           Generate a random cuid.
+  hostname       Generate a random, heroku-like hostname. [alias: heroku]
   nanoid         Generate a random nanoid. [alias: nano]
   uuidv4         Generate a random uuidv4. [alias: uuid]
 
@@ -37,6 +38,7 @@ Options:
 
 Examples:
   getid cuid
+  getid hostname
   getid nanoid
   getid uuidv4
 
@@ -60,6 +62,25 @@ Options:
   -h, --help  Show this help again.
 
 For more information on the 'cuid' format, see: https://github.com/ericelliott/cuid.
+```
+
+## hostname
+
+```sh
+# getid hostname --help 
+
+getid hostname -- Generate a random, heroku-like hostname.
+
+Usage:
+  getid hostname [--token_length <len>]
+
+Options:
+  --token_length <len>  Length of the appended token. [default: 4]
+  -h, --help            Show this help again.
+
+Aliases:
+  getid heroku
+  getid haikunator
 ```
 
 ### nanoid

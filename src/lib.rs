@@ -1,10 +1,17 @@
+use haikunator::haikunator;
 use nanoid::nanoid;
 use uuid::Uuid;
+
+mod haikunator;
 
 pub enum AppArgs {
     Cuid {
         show_help: bool,
         slug: bool,
+    },
+    Hostname {
+        show_help: bool,
+        token_length: Option<usize>,
     },
     Nanoid {
         show_help: bool,
@@ -13,7 +20,7 @@ pub enum AppArgs {
     Uuidv4 {
         show_help: bool,
         urn: bool,
-        simple: bool
+        simple: bool,
     },
     #[allow(dead_code)]
     Global {
@@ -38,6 +45,10 @@ pub fn parse_args() -> Result<AppArgs, Box<dyn std::error::Error>> {
             show_help: args.contains(["-h", "--help"]),
             simple: args.contains("--simple"),
             urn: args.contains("--urn"),
+        }),
+        Some("hostname") | Some("heroku") | Some("haikunator") => Ok(AppArgs::Hostname {
+            show_help: args.contains(["-h", "--help"]),
+            token_length: args.opt_value_from_str("--token_length")?,
         }),
         Some(s) => Err(format!(
             "unknown subcommand: {}. Type `getid --help` to see available commands.",
@@ -80,7 +91,10 @@ pub fn get_uuid(as_urn: bool, as_simple: bool) -> String {
     } else {
         uuid.to_hyphenated().to_string()
     }
+}
 
+pub fn get_haikunator(token_length: Option<usize>) -> String {
+    haikunator(token_length.unwrap_or(4))
 }
 
 pub fn output_or_help(show_help: bool, value: String, help: &str) {
