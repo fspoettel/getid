@@ -10,7 +10,7 @@ it with:
 # rustup update
 ```
 
-- Install `get-id` with cargo:
+- Install `getid` with cargo:
 ```
 # cargo install getid
 ```
@@ -23,11 +23,8 @@ it with:
 getid -- Generate a random { cuid, nanoid, uuidv4 }.
 
 Usage:
-  getid <command> [<flags>...]
   getid [--help, --version]
-  getid cuid
-  getid nanoid
-  getid uuidv4
+  getid <command> [<flags>...]
 
 Commands:
   cuid           Generate a random cuid.
@@ -37,6 +34,11 @@ Commands:
 Options:
   -v, --version  Show program version.
   -h, --help     Show this help again.
+
+Examples:
+  getid cuid
+  getid nanoid
+  getid uuidv4
 
 Type 'getid <command> --help' for information on a specific command.
 ```
@@ -56,7 +58,7 @@ Usage:
 Options:
   --slug      Generate a smaller id (7-10 characters) intended for short urls.
   -h, --help  Show this help again.
-  
+
 For more information on the 'cuid' format, see: https://github.com/ericelliott/cuid.
 ```
 
@@ -65,7 +67,7 @@ For more information on the 'cuid' format, see: https://github.com/ericelliott/c
 ```sh
 # getid nanoid --help
 
-getid nanoid -- Generate a random nanoid. Alias: 'nano'.
+getid nanoid -- Generate a random nanoid.
 
 Usage:
   getid nanoid [--length <len>]
@@ -73,7 +75,10 @@ Usage:
 Options:
   --length <len>  Length of generated id. [default: 21]
   -h, --help      Show this help again.
-  
+
+Aliases:
+  getid nano
+
 For more information on the 'nanoid' format, see: https://zelark.github.io/nano-id-cc/.
 ```
 
@@ -82,7 +87,7 @@ For more information on the 'nanoid' format, see: https://zelark.github.io/nano-
 ```sh
 # getid uuidv4 --help
 
-getid uuidv4 -- Generate a random uuidv4. Alias: 'uuid'.
+getid uuidv4 -- Generate a random uuidv4.
 
 Usage:
   getid uuidv4 [--urn]
@@ -91,6 +96,9 @@ Options:
   --urn       Format the generated id as 'urn'.
   --simple    Format the generated id without hyphens.
   -h, --help  Show this help again.
+
+Aliases:
+  getid uuid
 
 For more information on the 'uuidv4' format, see: https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random).
 ```

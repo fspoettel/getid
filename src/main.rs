@@ -33,11 +33,8 @@ const HELP: &str = "
 getid -- Generate a random { cuid, nanoid, uuidv4 }.
 
 Usage:
-  getid <command> [<flags>...]
   getid [--help, --version]
-  getid cuid
-  getid nanoid
-  getid uuidv4
+  getid <command> [<flags>...]
 
 Commands:
   cuid           Generate a random cuid.
@@ -47,6 +44,11 @@ Commands:
 Options:
   -v, --version  Show program version.
   -h, --help     Show this help again.
+
+Examples:
+  getid cuid
+  getid nanoid
+  getid uuidv4
 
 Type 'getid <command> --help' for information on a specific command.
 ";
@@ -65,7 +67,7 @@ For more information on the 'cuid' format, see: https://github.com/ericelliott/c
 ";
 
 const HELP_NANOID: &str = "
-getid nanoid -- Generate a random nanoid. Alias: 'nano'.
+getid nanoid -- Generate a random nanoid.
 
 Usage:
   getid nanoid [--length <len>]
@@ -74,11 +76,14 @@ Options:
   --length <len>  Length of generated id. [default: 21]
   -h, --help      Show this help again.
 
+Aliases:
+  getid nano
+
 For more information on the 'nanoid' format, see: https://zelark.github.io/nano-id-cc/.
 ";
 
 const HELP_UUIDV4: &str = "
-getid uuidv4 -- Generate a random uuidv4. Alias: 'uuid'.
+getid uuidv4 -- Generate a random uuidv4.
 
 Usage:
   getid uuidv4 [--urn]
@@ -87,6 +92,9 @@ Options:
   --urn       Format the generated id as 'urn'.
   --simple    Format the generated id without hyphens.
   -h, --help  Show this help again.
+
+Aliases:
+  getid uuid
 
 For more information on the 'uuidv4' format, see: https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random).
 ";
