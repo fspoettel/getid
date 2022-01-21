@@ -13,6 +13,7 @@ pub enum AppArgs {
     Uuidv4 {
         show_help: bool,
         urn: bool,
+        simple: bool
     },
     #[allow(dead_code)]
     Global {
@@ -35,6 +36,7 @@ pub fn parse_args() -> Result<AppArgs, Box<dyn std::error::Error>> {
         }),
         Some("uuidv4") | Some("uuid") => Ok(AppArgs::Uuidv4 {
             show_help: args.contains(["-h", "--help"]),
+            simple: args.contains("--simple"),
             urn: args.contains("--urn"),
         }),
         Some(s) => Err(format!(
@@ -68,13 +70,17 @@ pub fn get_nanoid(length: Option<usize>) -> String {
     }
 }
 
-pub fn get_uuid(as_urn: bool) -> String {
+pub fn get_uuid(as_urn: bool, as_simple: bool) -> String {
     let uuid = Uuid::new_v4();
+
     if as_urn {
         uuid.to_urn().to_string()
+    } else if as_simple {
+        uuid.to_simple().to_string()
     } else {
         uuid.to_hyphenated().to_string()
     }
+
 }
 
 pub fn output_or_help(show_help: bool, value: String, help: &str) {

@@ -9,8 +9,11 @@ fn main() {
             getid::AppArgs::Cuid { show_help, slug } => {
                 getid::output_or_help(show_help, getid::get_cuid(slug), HELP_CUID);
             }
-            getid::AppArgs::Uuidv4 { show_help, urn } => {
-                getid::output_or_help(show_help, getid::get_uuid(urn), HELP_UUIDV4);
+            getid::AppArgs::Uuidv4 { show_help, urn, simple } => {
+                if urn && simple {
+                    eprintln!("warning: '--urn' and '--simple' are mutually exclusive, ignoring '--simple'.");
+                }
+                getid::output_or_help(show_help, getid::get_uuid(urn, simple), HELP_UUIDV4);
             }
             getid::AppArgs::Nanoid { show_help, length } => {
                 getid::output_or_help(show_help, getid::get_nanoid(length), HELP_NANOID);
@@ -82,6 +85,7 @@ Usage:
 
 Options:
   --urn       Format the generated id as 'urn'.
+  --simple    Format the generated id without hyphens.
   -h, --help  Show this help again.
 
 For more information on the 'uuidv4' format, see: https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random).

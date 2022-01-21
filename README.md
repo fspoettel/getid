@@ -89,6 +89,7 @@ Usage:
 
 Options:
   --urn       Format the generated id as 'urn'.
+  --simple    Format the generated id without hyphens.
   -h, --help  Show this help again.
 
 For more information on the 'uuidv4' format, see: https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random).
