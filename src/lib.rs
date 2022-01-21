@@ -48,6 +48,9 @@ pub fn parse_args() -> Result<AppArgs, Box<dyn std::error::Error>> {
         }),
     };
 
+    let remaining = args.finish();
+    if !remaining.is_empty() {
+        eprintln!("Warning: unknown argument(s): {:?}.", remaining);
     }
 
     app_args
