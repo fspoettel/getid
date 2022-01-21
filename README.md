@@ -17,14 +17,6 @@ it with:
 
 ## Usage
 
-Basic usage:
-```sh
-# getid cuid
-# getid nanoid
-# getid uuidv4
-```
-
-Help:
 ```sh
 # getid --help
 
@@ -33,11 +25,14 @@ getid -- Generate a random { cuid, nanoid, uuidv4 }.
 Usage:
   getid <command> [<flags>...]
   getid [--help, --version]
+  getid cuid
+  getid nanoid
+  getid uuidv4
 
 Commands:
   cuid           Generate a random cuid.
-  nanoid         Generate a random nanoid.
-  uuidv4         Generate a random uuidv4.
+  nanoid         Generate a random nanoid. [alias: nano]
+  uuidv4         Generate a random uuidv4. [alias: uuid]
 
 Options:
   -v, --version  Show program version.
@@ -50,16 +45,8 @@ Type 'getid <command> --help' for information on a specific command.
 
 ### cuid
 
-Basic usage:
 ```sh
-getid cuid
-```
-
-Help:
-```sh
-# getid cuid --help
-
-getid cuid -- Generate a random 'cuid'.
+getid cuid -- Generate a random cuid.
 
 Usage:
   getid cuid [--slug]
@@ -73,16 +60,8 @@ For more information on the 'cuid' format, see: https://github.com/ericelliott/c
 
 ### nanoid
 
-Basic usage:
 ```sh
-# getid nanoid
-```
-
-Help:
-```sh
-# getid nanoid --help
-
-getid nanoid -- Generate a random 'nanoid'.
+getid nanoid -- Generate a random nanoid. Alias: 'nano'.
 
 Usage:
   getid nanoid [--length <len>]
@@ -96,16 +75,8 @@ For more information on the 'nanoid' format, see: https://zelark.github.io/nano-
 
 ### uuidv4
 
-Basic usage:
 ```sh
-# getid uuidv4
-```
-
-Help:
-```sh
-# getid uuidv4 --help
-
-getid uuidv4 -- Generate a random 'uuidv4'.
+getid uuidv4 -- Generate a random uuidv4. Alias: 'uuid'.
 
 Usage:
   getid uuidv4 [--urn]

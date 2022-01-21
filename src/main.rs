@@ -6,7 +6,7 @@ enum AppArgs {
         help: bool,
         slug: bool,
     },
-    NanoId {
+    Nanoid {
         help: bool,
         length: Option<usize>,
     },
@@ -37,7 +37,7 @@ fn main() {
                 }
             }
 
-            AppArgs::NanoId { help, length } => {
+            AppArgs::Nanoid { help, length } => {
                 if help {
                     println!("{}", HELP_NANOID);
                 } else {
@@ -83,11 +83,11 @@ fn parse_args() -> Result<AppArgs, Box<dyn std::error::Error>> {
             help: args.contains(["-h", "--help"]),
             slug: args.contains("--slug"),
         }),
-        Some("nanoid") => Ok(AppArgs::NanoId {
+        Some("nanoid") | Some("nano") => Ok(AppArgs::Nanoid {
             help: args.contains(["-h", "--help"]),
             length: args.opt_value_from_str("--length")?,
         }),
-        Some("uuidv4") => Ok(AppArgs::Uuidv4 {
+        Some("uuidv4") | Some("uuid") => Ok(AppArgs::Uuidv4 {
             help: args.contains(["-h", "--help"]),
             urn: args.contains("--urn"),
         }),
@@ -109,11 +109,14 @@ getid -- Generate a random { cuid, nanoid, uuidv4 }.
 Usage:
   getid <command> [<flags>...]
   getid [--help, --version]
+  getid cuid
+  getid nanoid
+  getid uuidv4
 
 Commands:
   cuid           Generate a random cuid.
-  nanoid         Generate a random nanoid.
-  uuidv4         Generate a random uuidv4.
+  nanoid         Generate a random nanoid. [alias: nano]
+  uuidv4         Generate a random uuidv4. [alias: uuid]
 
 Options:
   -v, --version  Show program version.
@@ -123,7 +126,7 @@ Type 'getid <command> --help' for information on a specific command.
 ";
 
 const HELP_CUID: &str = "
-getid cuid -- Generate a random 'cuid'.
+getid cuid -- Generate a random cuid.
 
 Usage:
   getid cuid [--slug]
@@ -136,7 +139,7 @@ For more information on the 'cuid' format, see: https://github.com/ericelliott/c
 ";
 
 const HELP_NANOID: &str = "
-getid nanoid -- Generate a random 'nanoid'.
+getid nanoid -- Generate a random nanoid. Alias: 'nano'.
 
 Usage:
   getid nanoid [--length <len>]
@@ -149,7 +152,7 @@ For more information on the 'nanoid' format, see: https://zelark.github.io/nano-
 ";
 
 const HELP_UUIDV4: &str = "
-getid uuidv4 -- Generate a random 'uuidv4'.
+getid uuidv4 -- Generate a random uuidv4. Alias: 'uuid'.
 
 Usage:
   getid uuidv4 [--urn]
