@@ -1,8 +1,8 @@
-use haikunator::haikunator;
+use hostname::hostname;
 use nanoid::nanoid;
 use uuid::Uuid;
 
-mod haikunator;
+mod hostname;
 
 pub enum AppArgs {
     Cuid {
@@ -46,7 +46,7 @@ pub fn parse_args() -> Result<AppArgs, Box<dyn std::error::Error>> {
             simple: args.contains("--simple"),
             urn: args.contains("--urn"),
         }),
-        Some("hostname") | Some("heroku") | Some("haikunator") => Ok(AppArgs::Hostname {
+        Some("hostname") | Some("heroku")=> Ok(AppArgs::Hostname {
             show_help: args.contains(["-h", "--help"]),
             token_length: args.opt_value_from_str("--token_length")?,
         }),
@@ -93,8 +93,8 @@ pub fn get_uuid(as_urn: bool, as_simple: bool) -> String {
     }
 }
 
-pub fn get_haikunator(token_length: Option<usize>) -> String {
-    haikunator(token_length.unwrap_or(4))
+pub fn get_hostname(token_length: Option<usize>) -> String {
+    hostname(token_length.unwrap_or(4))
 }
 
 pub fn output_or_help(show_help: bool, value: String, help: &str) {

@@ -126,7 +126,7 @@ static NOUNS: [&str; 60] = [
     "wolf",
 ];
 
-pub fn haikunator(token_length: usize) -> String {
+pub fn hostname(token_length: usize) -> String {
     let mut rng = rand::thread_rng();
 
     let i = rng.gen_range(0..ADJECTIVES.len());

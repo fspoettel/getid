@@ -31,7 +31,7 @@ fn main() {
             } => {
                 getid::output_or_help(
                     show_help,
-                    getid::get_haikunator(token_length),
+                    getid::get_hostname(token_length),
                     HELP_HOSTNAME,
                 );
             }
@@ -98,7 +98,6 @@ Options:
 
 Aliases:
   getid heroku
-  getid haikunator
 ";
 
 const HELP_NANOID: &str = "

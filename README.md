@@ -80,7 +80,6 @@ Options:
 
 Aliases:
   getid heroku
-  getid haikunator
 ```
 
 ### nanoid
