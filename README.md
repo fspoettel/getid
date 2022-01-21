@@ -46,6 +46,8 @@ Type 'getid <command> --help' for information on a specific command.
 ### cuid
 
 ```sh
+# getid cuid --help
+
 getid cuid -- Generate a random cuid.
 
 Usage:
@@ -61,6 +63,8 @@ For more information on the 'cuid' format, see: https://github.com/ericelliott/c
 ### nanoid
 
 ```sh
+# getid nanoid --help
+
 getid nanoid -- Generate a random nanoid. Alias: 'nano'.
 
 Usage:
@@ -76,6 +80,8 @@ For more information on the 'nanoid' format, see: https://zelark.github.io/nano-
 ### uuidv4
 
 ```sh
+# getid uuidv4 --help
+
 getid uuidv4 -- Generate a random uuidv4. Alias: 'uuid'.
 
 Usage:
