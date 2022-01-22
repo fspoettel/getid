@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - add `--simple` option for uuidv4
+- add `hostname` command for heroku-like names
 
 ## [0.3.0] - 2022-01-21
 ### Added
