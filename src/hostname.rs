@@ -1,0 +1,158 @@
+use rand::Rng;
+
+pub fn hostname(token_length: usize) -> String {
+    let mut rng = rand::thread_rng();
+
+    let i = rng.gen_range(0..ADJECTIVES.len());
+    let j = rng.gen_range(0..NOUNS.len());
+    let adjective = ADJECTIVES[i];
+    let noun = NOUNS[j];
+    let s = format!("{}-{}", adjective, noun);
+
+    if token_length == 0 {
+        return s;
+    }
+
+    let token = (0..token_length)
+        .map(|_| {
+            let d = rng.gen_range(0..10);
+            char::from_digit(d, 10).unwrap()
+        })
+        .collect::<String>();
+
+    format!("{}-{}", s, token)
+}
+
+const ADJECTIVES: &[&str; 64] = &[
+    "adventurous",
+    "awesome",
+    "ancient",
+    "autumn",
+    "blue",
+    "calm",
+    "charming",
+    "chill",
+    "cold",
+    "cool",
+    "crimson",
+    "decadent",
+    "delicate",
+    "dreamy",
+    "elusive",
+    "enormous",
+    "evening",
+    "fancy",
+    "fearful",
+    "floral",
+    "fresh",
+    "frosty",
+    "gentle",
+    "green",
+    "groovy",
+    "hidden",
+    "icy",
+    "indigo",
+    "joyous",
+    "lazy",
+    "likeable",
+    "lively",
+    "loud",
+    "lovely",
+    "lucky",
+    "lonely",
+    "misty",
+    "morning",
+    "mysterious",
+    "neon",
+    "nice",
+    "patient",
+    "purple",
+    "quick",
+    "quiet",
+    "restless",
+    "secret",
+    "shiny",
+    "sleepy",
+    "slow",
+    "snazzy",
+    "soft",
+    "spring",
+    "stunning",
+    "summer",
+    "superb",
+    "sweet",
+    "tiny",
+    "travelling",
+    "wandering",
+    "whispering",
+    "wild",
+    "winter",
+    "yellow",
+];
+
+const NOUNS: &[&str; 64] = &[
+    "beach",
+    "bear",
+    "bird",
+    "blossom",
+    "breeze",
+    "bumblebee",
+    "butterfly",
+    "cat",
+    "cherry",
+    "cloud",
+    "crab",
+    "feather",
+    "flower",
+    "forest",
+    "fox",
+    "frog",
+    "garden",
+    "giant",
+    "ghost",
+    "haze",
+    "hedgehog",
+    "lake",
+    "leaf",
+    "meadow",
+    "moon",
+    "mountain",
+    "mouse",
+    "night",
+    "ocean",
+    "octopus",
+    "panda",
+    "panther",
+    "pear",
+    "pine",
+    "penguin",
+    "pumpkin",
+    "queen",
+    "raindrop",
+    "river",
+    "rocket",
+    "shark",
+    "sea",
+    "seal",
+    "shadow",
+    "ship",
+    "sky",
+    "sloth",
+    "snowflake",
+    "snowman",
+    "spider",
+    "squid",
+    "squirrel",
+    "star",
+    "storm",
+    "sun",
+    "sunset",
+    "tourist",
+    "tree",
+    "water",
+    "wave",
+    "wildflower",
+    "witch",
+    "wizard",
+    "wolf",
+];
