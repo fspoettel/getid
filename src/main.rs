@@ -40,7 +40,6 @@ fn main() {
                 show_help: _,
                 version,
             } => {
-                // print a default format if not `--help`?
                 getid::output_or_help(!version, env!("CARGO_PKG_VERSION").to_string(), HELP);
             }
         },

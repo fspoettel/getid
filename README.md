@@ -64,7 +64,7 @@ Options:
 For more information on the 'cuid' format, see: https://github.com/ericelliott/cuid.
 ```
 
-## hostname
+### hostname
 
 ```sh
 # getid hostname --help 

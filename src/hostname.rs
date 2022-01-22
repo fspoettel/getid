@@ -1,6 +1,29 @@
 use rand::Rng;
 
-static ADJECTIVES: [&str; 60] = [
+pub fn hostname(token_length: usize) -> String {
+    let mut rng = rand::thread_rng();
+
+    let i = rng.gen_range(0..ADJECTIVES.len());
+    let j = rng.gen_range(0..NOUNS.len());
+    let adjective = ADJECTIVES[i];
+    let noun = NOUNS[j];
+    let s = format!("{}-{}", adjective, noun);
+
+    if token_length == 0 {
+        return s;
+    }
+
+    let token = (0..token_length)
+        .map(|_| {
+            let d = rng.gen_range(0..10);
+            char::from_digit(d, 10).unwrap()
+        })
+        .collect::<String>();
+
+    format!("{}-{}", s, token)
+}
+
+const ADJECTIVES: &[&str; 60] = &[
     "adventurous",
     "awesome",
     "ancient",
@@ -63,7 +86,7 @@ static ADJECTIVES: [&str; 60] = [
     "yellow",
 ];
 
-static NOUNS: [&str; 60] = [
+const NOUNS: &[&str; 60] = &[
     "beach",
     "bear",
     "bird",
@@ -125,26 +148,3 @@ static NOUNS: [&str; 60] = [
     "wizard",
     "wolf",
 ];
-
-pub fn hostname(token_length: usize) -> String {
-    let mut rng = rand::thread_rng();
-
-    let i = rng.gen_range(0..ADJECTIVES.len());
-    let j = rng.gen_range(0..NOUNS.len());
-    let adjective = ADJECTIVES[i];
-    let noun = NOUNS[j];
-    let s = format!("{}-{}", adjective, noun);
-
-    if token_length == 0 {
-        return s;
-    }
-
-    let token = (0..token_length)
-        .map(|_| {
-            let d = rng.gen_range(0..10);
-            char::from_digit(d, 10).unwrap()
-        })
-        .collect::<String>();
-
-    format!("{}-{}", s, token)
-}
