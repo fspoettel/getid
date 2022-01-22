@@ -1,6 +1,6 @@
 [package]
 name = "getid"
-version = "0.3.0"
+version = "0.4.0"
 authors = ["Felix Spoettel <felix@spoet.tel>"]
 edition = "2021"
 license = "MIT"
