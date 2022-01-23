@@ -187,4 +187,3 @@ const NOUNS: &[&str; 64] = &[
     "wizard",
     "wolf",
 ];
-
