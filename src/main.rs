@@ -1,20 +1,25 @@
+use getid::{
+    args::{parse_args, AppArgs},
+    ids::{get_cuid, get_hostname, get_nanoid, get_uuid},
+};
+
 fn main() {
-    match getid::parse_args() {
+    match parse_args() {
         Err(err) => {
             eprintln!("Error: {}", err);
             std::process::exit(1);
         }
 
         Ok(args) => match args {
-            getid::AppArgs::Cuid { show_help, slug } => {
-                getid::output_or_help(show_help, getid::get_cuid(slug), HELP_CUID);
+            AppArgs::Cuid { show_help, slug } => {
+                output_or_help(show_help, get_cuid(slug), HELP_CUID);
             }
 
-            getid::AppArgs::Nanoid { show_help, length } => {
-                getid::output_or_help(show_help, getid::get_nanoid(length), HELP_NANOID);
+            AppArgs::Nanoid { show_help, length } => {
+                output_or_help(show_help, get_nanoid(length), HELP_NANOID);
             }
 
-            getid::AppArgs::Uuidv4 {
+            AppArgs::Uuidv4 {
                 show_help,
                 urn,
                 simple,
@@ -22,27 +27,31 @@ fn main() {
                 if urn && simple {
                     eprintln!("warning: '--urn' and '--simple' are mutually exclusive, ignoring '--simple'.");
                 }
-                getid::output_or_help(show_help, getid::get_uuid(urn, simple), HELP_UUIDV4);
+                output_or_help(show_help, get_uuid(urn, simple), HELP_UUIDV4);
             }
 
-            getid::AppArgs::Hostname {
+            AppArgs::Hostname {
                 show_help,
                 token_length,
             } => {
-                getid::output_or_help(
-                    show_help,
-                    getid::get_hostname(token_length),
-                    HELP_HOSTNAME,
-                );
+                output_or_help(show_help, get_hostname(token_length), HELP_HOSTNAME);
             }
 
-            getid::AppArgs::Global {
+            AppArgs::Global {
                 show_help: _,
                 version,
             } => {
-                getid::output_or_help(!version, env!("CARGO_PKG_VERSION").to_string(), HELP);
+                output_or_help(!version, env!("CARGO_PKG_VERSION").to_string(), HELP);
             }
         },
+    }
+}
+
+pub fn output_or_help(show_help: bool, value: String, help: &str) {
+    if show_help {
+        println!("{}", help);
+    } else {
+        println!("{}", value);
     }
 }
 
