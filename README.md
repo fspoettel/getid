@@ -2,6 +2,9 @@
 
 > A command-line tool to generate random { [cuid](https://github.com/ericelliott/cuid), [nanoid](https://zelark.github.io/nano-id-cc/), [uuidv4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) } ids.
 
+[![Test Status](https://github.com/fspoettel/getid/actions/workflows/ci.yaml/badge.svg)](https://github.com/fspoettel/getid/actions/workflows/ci.yaml)
+[![Crate](https://img.shields.io/crates/v/getid.svg)](https://crates.io/crates/getid)
+
 ## Install
 
 - Install a recent version of Rust using [rustup](https://rustup.rs/) or update
