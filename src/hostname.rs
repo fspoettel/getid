@@ -23,6 +23,36 @@ pub fn hostname(token_length: usize) -> String {
     format!("{}-{}", s, token)
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_with_n_token() {
+        let res = hostname(4);
+
+        let mut parts = res.split('-');
+        assert_eq!(parts.clone().count(), 3);
+
+        let adj = parts.next().unwrap();
+        assert_eq!(ADJECTIVES.contains(&adj), true);
+
+        let noun = parts.next().unwrap();
+        assert_eq!(NOUNS.contains(&noun), true);
+
+        let token = parts.next().unwrap();
+        assert_eq!(token.len(), 4);
+        assert_eq!(token.chars().all(|c| c.is_digit(10)), true);
+    }
+
+    #[test]
+    fn test_with_zero_token() {
+        let res = hostname(0);
+        let parts = res.split('-');
+        assert_eq!(parts.clone().count(), 2);
+    }
+}
+
 const ADJECTIVES: &[&str; 64] = &[
     "adventurous",
     "awesome",
@@ -88,6 +118,7 @@ const ADJECTIVES: &[&str; 64] = &[
     "wild",
     "winter",
     "yellow",
+    // waltzing
 ];
 
 const NOUNS: &[&str; 64] = &[
@@ -156,3 +187,4 @@ const NOUNS: &[&str; 64] = &[
     "wizard",
     "wolf",
 ];
+
