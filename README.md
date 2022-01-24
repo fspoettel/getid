@@ -1,6 +1,6 @@
 # getid
 
-> A command-line tool to generate random { [cuid](https://github.com/ericelliott/cuid), [nanoid](https://zelark.github.io/nano-id-cc/), [uuidv4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) } ids.
+> A command-line tool to generate random ids. ([uuidv4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)), [nanoid](https://zelark.github.io/nano-id-cc/), [cuid](https://github.com/ericelliott/cuid), hostnames)
 
 [![Test Status](https://github.com/fspoettel/getid/actions/workflows/ci.yaml/badge.svg)](https://github.com/fspoettel/getid/actions/workflows/ci.yaml)
 [![Crate](https://img.shields.io/crates/v/getid.svg)](https://crates.io/crates/getid)
@@ -23,17 +23,17 @@ it with:
 ```sh
 # getid --help
 
-getid -- Generate a random { cuid, nanoid, uuidv4 }.
+getid -- Generate a random id.
 
 Usage:
   getid [--help, --version]
   getid <command> [<flags>...]
 
 Commands:
-  cuid           Generate a random cuid.
-  hostname       Generate a random, heroku-like hostname. [alias: heroku]
-  nanoid         Generate a random nanoid. [alias: nano]
-  uuidv4         Generate a random uuidv4. [alias: uuid]
+  cuid           Generate a cuid.
+  hostname       Generate a heroku-like hostname. [alias: heroku]
+  nanoid         Generate a nanoid. [alias: nano]
+  uuidv4         Generate a uuidv4. [alias: uuid]
 
 Options:
   -v, --version  Show program version.
@@ -55,7 +55,7 @@ Type 'getid <command> --help' for information on a specific command.
 ```sh
 # getid cuid --help
 
-getid cuid -- Generate a random cuid.
+getid cuid -- Generate a cuid.
 
 Usage:
   getid cuid [--slug]
@@ -72,7 +72,7 @@ For more information on the 'cuid' format, see: https://github.com/ericelliott/c
 ```sh
 # getid hostname --help 
 
-getid hostname -- Generate a random, heroku-like hostname.
+getid hostname -- Generate a heroku-like hostname.
 
 Usage:
   getid hostname [--token_length <len>]
@@ -90,7 +90,7 @@ Aliases:
 ```sh
 # getid nanoid --help
 
-getid nanoid -- Generate a random nanoid.
+getid nanoid -- Generate a nanoid.
 
 Usage:
   getid nanoid [--length <len>]
@@ -110,7 +110,7 @@ For more information on the 'nanoid' format, see: https://zelark.github.io/nano-
 ```sh
 # getid uuidv4 --help
 
-getid uuidv4 -- Generate a random uuidv4.
+getid uuidv4 -- Generate a uuidv4.
 
 Usage:
   getid uuidv4 [--urn]

@@ -56,17 +56,17 @@ pub fn output_or_help(show_help: bool, value: String, help: &str) {
 }
 
 const HELP: &str = "
-getid -- Generate a random { cuid, nanoid, uuidv4 }.
+getid -- Generate a random id.
 
 Usage:
   getid [--help, --version]
   getid <command> [<flags>...]
 
 Commands:
-  cuid           Generate a random cuid.
-  hostname       Generate a random, heroku-like hostname. [alias: heroku]
-  nanoid         Generate a random nanoid. [alias: nano]
-  uuidv4         Generate a random uuidv4. [alias: uuid]
+  cuid           Generate a cuid.
+  hostname       Generate a heroku-like hostname. [alias: heroku]
+  nanoid         Generate a nanoid. [alias: nano]
+  uuidv4         Generate a uuidv4. [alias: uuid]
 
 Options:
   -v, --version  Show program version.
@@ -82,7 +82,7 @@ Type 'getid <command> --help' for information on a specific command.
 ";
 
 const HELP_CUID: &str = "
-getid cuid -- Generate a random cuid.
+getid cuid -- Generate a cuid.
 
 Usage:
   getid cuid [--slug]
@@ -95,7 +95,7 @@ For more information on the 'cuid' format, see: https://github.com/ericelliott/c
 ";
 
 const HELP_HOSTNAME: &str = "
-getid hostname -- Generate a random, heroku-like hostname.
+getid hostname -- Generate a heroku-like hostname.
 
 Usage:
   getid hostname [--token_length <len>]
@@ -109,7 +109,7 @@ Aliases:
 ";
 
 const HELP_NANOID: &str = "
-getid nanoid -- Generate a random nanoid.
+getid nanoid -- Generate a nanoid.
 
 Usage:
   getid nanoid [--length <len>]
@@ -125,7 +125,7 @@ For more information on the 'nanoid' format, see: https://zelark.github.io/nano-
 ";
 
 const HELP_UUIDV4: &str = "
-getid uuidv4 -- Generate a random uuidv4.
+getid uuidv4 -- Generate a uuidv4.
 
 Usage:
   getid uuidv4 [--urn]
